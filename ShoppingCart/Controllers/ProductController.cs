@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using ShoppingCart.Repositories;
 
 namespace ShoppingCart.Controllers;
 
@@ -6,5 +7,14 @@ namespace ShoppingCart.Controllers;
 [ApiController]
 public class ProductController: ControllerBase
 {
+    //DI
+    private readonly IProductRepository _productRepository;
+
+    public ProductController(IProductRepository productRepository)
+    {
+        _productRepository = productRepository;
+    }
+    
+    
     
 }
