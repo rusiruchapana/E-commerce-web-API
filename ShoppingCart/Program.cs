@@ -1,4 +1,17 @@
+using Microsoft.EntityFrameworkCore;
+using ShoppingCart.Models;
+
 var builder = WebApplication.CreateBuilder(args);
+
+// Configure DbContext to use MySQL
+builder.Services.AddDbContext<ApplicationDBContext>(options =>
+    options.UseMySql(
+        builder.Configuration.GetConnectionString("DefaultConnection"),
+        new MySqlServerVersion(new Version(8, 0, 21)) // Replace with your MySQL version
+    )
+);
+
+
 
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
