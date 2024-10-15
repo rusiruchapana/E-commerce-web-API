@@ -14,9 +14,9 @@ public class Product
     [Required]
     public  double Price{ get; set; }
     
-    [ForeignKey("Category")]
-    public int CategoryId { get; set; }
+    //[ForeignKey("Category")]
+    //public int CategoryId { get; set; }
     
     
-    public Category Category { get; set; }
+    //public Category Category { get; set; }
 }
