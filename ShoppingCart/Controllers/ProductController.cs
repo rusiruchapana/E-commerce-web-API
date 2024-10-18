@@ -18,7 +18,7 @@ public class ProductController: ControllerBase
     
     //POST method
     [HttpPost]
-    public async Task<IActionResult> AddProduct(Product product)
+    public async Task<ActionResult> AddProduct(Product product)
     {
         var newProduct = await _productRepository.AddProduct(product);
         return Ok(newProduct);
@@ -32,7 +32,17 @@ public class ProductController: ControllerBase
         return Ok(allProducts);
     }
 
-
+    //GET by ID
+    [HttpGet("{id}")]
+    public async Task<ActionResult<Product>> getProductById(int id)
+    {
+        var product = await _productRepository.GetProductById(id);
+        if (product == null)
+        {
+            throw new Exception("product not found");
+        }
+        return product;
+    }
 
 
 
