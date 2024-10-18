@@ -58,4 +58,22 @@ public class ProductController: ControllerBase
         
         return Ok(updatedProduct);
     }
+    
+    //DELETE 
+    [HttpDelete("{id}")]
+    public async Task<ActionResult> DeleteProduct(int id)
+    {
+        var check = await _productRepository.DeleteProduct(id);
+        if (check)
+        {
+            return NoContent();
+        }
+        
+        return NotFound();
+        
+    }
+
+
+
+
 }

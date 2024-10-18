@@ -9,4 +9,5 @@ public interface IProductRepository
     Task<Product> GetProductById(int id);
 
     Task<Product> UpdateProduct(Product product);
+    Task<bool> DeleteProduct(int id);
 }

@@ -42,4 +42,18 @@ public class ProductRepository: IProductRepository
         await _applicationDbContext.SaveChangesAsync();
         return existingProduct;
     }
+
+    public async Task<bool> DeleteProduct(int id)
+    {
+        var product = await _applicationDbContext.Products.FindAsync(id);
+        
+        if (product == null)
+        {
+            return false;
+        }
+       
+        _applicationDbContext.Products.Remove(product);
+        await _applicationDbContext.SaveChangesAsync();
+        return true;
+    }
 }
