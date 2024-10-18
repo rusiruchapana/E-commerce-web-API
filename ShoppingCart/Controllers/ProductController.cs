@@ -24,7 +24,13 @@ public class ProductController: ControllerBase
         return Ok(newProduct);
     }
 
-
+    //GET method
+    [HttpGet]
+    public async Task<ActionResult<IEnumerable<Product>>> GetAllProducts()
+    {
+        var allProducts =  await  _productRepository.GetAllProducts();
+        return Ok(allProducts);
+    }
 
 
 

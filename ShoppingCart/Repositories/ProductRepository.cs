@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using ShoppingCart.Models;
 
 namespace ShoppingCart.Repositories;
@@ -18,5 +19,10 @@ public class ProductRepository: IProductRepository
         _applicationDbContext.Products.Add(product);
         await _applicationDbContext.SaveChangesAsync();
         return product;
+    }
+
+    public async Task<IEnumerable<Product>> GetAllProducts()
+    {
+        return await _applicationDbContext.Products.ToListAsync();
     }
 }
