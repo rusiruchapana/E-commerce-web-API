@@ -30,4 +30,16 @@ public class ProductRepository: IProductRepository
     {
         return await _applicationDbContext.Products.FindAsync(id);
     }
+
+    public async Task<Product> UpdateProduct(Product product)
+    {
+        var existingProduct = await _applicationDbContext.Products.FindAsync(product.ProductId);
+        existingProduct.Name = product.Name;
+        existingProduct.Price = product.Price;
+        existingProduct.CategoryId = product.CategoryId;
+        existingProduct.Category = product.Category;
+
+        await _applicationDbContext.SaveChangesAsync();
+        return existingProduct;
+    }
 }

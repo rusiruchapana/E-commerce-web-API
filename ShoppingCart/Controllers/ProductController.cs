@@ -34,7 +34,7 @@ public class ProductController: ControllerBase
 
     //GET by ID
     [HttpGet("{id}")]
-    public async Task<ActionResult<Product>> getProductById(int id)
+    public async Task<ActionResult<Product>> GetProductById(int id)
     {
         var product = await _productRepository.GetProductById(id);
         if (product == null)
@@ -44,6 +44,18 @@ public class ProductController: ControllerBase
         return product;
     }
 
-
-
+    //UPDATE
+    [HttpPut("{id}")]
+    public async Task<ActionResult<Product>> UpdateProduct(int id , Product product)
+    {
+        if (id!=product.ProductId)
+            return BadRequest();
+        
+        var updatedProduct = await _productRepository.UpdateProduct(product);
+        
+        if (updatedProduct == null)
+            return NotFound();
+        
+        return Ok(updatedProduct);
+    }
 }
